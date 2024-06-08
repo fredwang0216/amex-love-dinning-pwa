@@ -11,21 +11,26 @@ const App = () => {
 
   // Fetch locations from the JSON file
   useEffect(() => {
-    fetch('/locations.json')
-      .then(response => response.json())
-      .then(data => {
+    const fetchLocations = async () => {
+      try {
+        const response = await fetch(`${process.env.PUBLIC_URL}/locations.json`);
+        const data = await response.json();
         const formattedLocations = data.map(location => ({
           name: location.name,
           position: {
             lat: location.geometry.location.lat,
-            lng: location.geometry.location.lng,
+            lng: location.geometry.location.lng
           },
-          category: location["Type in AMEX Website"],
+          category: location["Type in AMEX Website"]
         }));
         setLocations(formattedLocations);
         setFilteredLocations(formattedLocations);
-      })
-      .catch(error => console.error('Error fetching locations:', error));
+      } catch (error) {
+        console.error('Error fetching locations:', error);
+      }
+    };
+  
+    fetchLocations();
   }, []);
 
   // Update filtered locations based on selected category
