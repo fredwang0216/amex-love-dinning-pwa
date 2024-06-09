@@ -14,7 +14,8 @@ const App = () => {
     const fetchLocations = async () => {
       try {
         // Use a relative path to fetch locations.json
-        const response = await fetch('/locations.json');
+        // const response = await fetch('/locations.json');
+        const response = await fetch('%PUBLIC_URL%/locations.json');
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
