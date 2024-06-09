@@ -14,6 +14,9 @@ const App = () => {
     const fetchLocations = async () => {
       try {
         const response = await fetch(`${window.location.origin}${window.location.pathname}locations.json`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
         const formattedLocations = data.map(location => ({
           name: location.name,
