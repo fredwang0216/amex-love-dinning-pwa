@@ -13,7 +13,7 @@ const App = () => {
   useEffect(() => {
     const fetchLocations = async () => {
       try {
-        const response = await fetch(`${window.location.origin}/locations.json`);
+        const response = await fetch(`${process.env.PUBLIC_URL}/locations.json`);
         const data = await response.json();
         const formattedLocations = data.map(location => ({
           name: location.name,
