@@ -13,7 +13,8 @@ const App = () => {
   useEffect(() => {
     const fetchLocations = async () => {
       try {
-        const response = await fetch(`${window.location.origin}${window.location.pathname}locations.json`);
+        // Use a relative path to fetch locations.json
+        const response = await fetch('/locations.json');
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -72,7 +73,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>AMEX Love Dinning</h1>
+      <h1>AMEX Love Dining</h1>
       <Filter 
         categories={categories} 
         selectedCategory={selectedCategory} 
